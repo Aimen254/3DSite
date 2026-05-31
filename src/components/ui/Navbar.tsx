@@ -12,23 +12,20 @@ export default function Navbar() {
   const menuRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
 
-// Replace the useEffect inside Navbar.tsx with this:
 useEffect(() => {
-  // Entrance
   gsap.from(navRef.current, {
     y: -60, opacity: 0, duration: 1.2,
     delay: 0.5, ease: "power3.out",
   });
 
-  // Blur + border on scroll
   const onScroll = () => {
     const scrolled = window.scrollY > 40;
     if (navRef.current) {
       navRef.current.style.backdropFilter  = scrolled ? "blur(20px)" : "none";
       navRef.current.style.background      = scrolled
-        ? "rgba(0,0,0,0.4)" : "transparent";
+        ? "rgba(6,10,22,0.75)" : "transparent";
       navRef.current.style.borderBottom    = scrolled
-        ? "1px solid rgba(255,255,255,0.06)" : "1px solid transparent";
+        ? "1px solid rgba(99,155,255,0.1)" : "1px solid transparent";
       navRef.current.style.transition = "all 0.4s ease";
     }
   };
@@ -87,7 +84,7 @@ useEffect(() => {
           style={{
             fontSize: "18px",
             fontWeight: 600,
-            color: "#fff",
+            color: "#e8f1ff",
             letterSpacing: "-0.02em",
           }}
         >
@@ -109,18 +106,17 @@ useEffect(() => {
               key={link}
               href="#"
               style={{
-                color: "rgba(255,255,255,0.55)",
+                color: "rgba(180,210,255,0.7)",
                 fontSize: "13px",
                 textDecoration: "none",
                 letterSpacing: "0.03em",
                 transition: "color 0.2s",
               }}
               onMouseEnter={(e) =>
-                ((e.target as HTMLElement).style.color = "#fff")
+                ((e.target as HTMLElement).style.color = "#e8f1ff")
               }
               onMouseLeave={(e) =>
-                ((e.target as HTMLElement).style.color =
-                  "rgba(255,255,255,0.55)")
+                ((e.target as HTMLElement).style.color = "rgba(180,210,255,0.7)")
               }
             >
               {link}
@@ -133,7 +129,7 @@ useEffect(() => {
           <a
             href="#"
             style={{
-              color: "rgba(255,255,255,0.55)",
+              color: "rgba(180,210,255,0.7)",
               fontSize: "13px",
               textDecoration: "none",
             }}
@@ -151,7 +147,7 @@ useEffect(() => {
           position: "fixed",
           inset: 0,
           zIndex: 99,
-          background: "rgba(0,0,0,0.95)",
+          background: "rgba(6,10,22,0.97)",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -168,7 +164,7 @@ useEffect(() => {
             className="menu-link"
             onClick={() => setOpen(false)}
             style={{
-              color: "#fff",
+              color: "#e8f1ff",
               fontSize: "clamp(2rem, 8vw, 4rem)",
               fontWeight: 600,
               textDecoration: "none",
@@ -190,9 +186,9 @@ useEffect(() => {
           zIndex: 101,
           background: "none",
           border: "none",
-          color: "#fff",
+          color: "#e8f1ff",
           fontSize: "22px",
-          display: "none", // hidden on desktop; show via media query if needed
+          display: "none",
         }}
         aria-label="Toggle menu"
       >

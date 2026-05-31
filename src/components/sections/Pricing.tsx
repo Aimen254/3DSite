@@ -11,8 +11,8 @@ const PLANS = [
     monthlyPrice: 0,
     annualPrice: 0,
     description: "For small farms getting started with precision agriculture.",
-    accent: "rgba(255,255,255,0.08)",
-    textAccent: "rgba(255,255,255,0.5)",
+    accent: "rgba(99,155,255,0.1)",
+    textAccent: "rgba(180,210,255,0.6)",
     features: [
       "Up to 5 hectares",
       "Weekly crop reports",
@@ -47,8 +47,8 @@ const PLANS = [
     monthlyPrice: 199,
     annualPrice: 159,
     description: "For cooperatives and large-scale commercial operations.",
-    accent: "rgba(255,255,255,0.08)",
-    textAccent: "rgba(255,255,255,0.5)",
+    accent: "rgba(99,155,255,0.1)",
+    textAccent: "rgba(180,210,255,0.6)",
     features: [
       "Unlimited hectares",
       "Real-time drone integration",
@@ -71,7 +71,6 @@ export default function Pricing() {
   const [annual, setAnnual] = useState(false);
 
   useEffect(() => {
-    // Heading
     gsap.from(headingRef.current, {
       y: 60, opacity: 0, duration: 1.2, ease: "power3.out",
       scrollTrigger: {
@@ -80,7 +79,6 @@ export default function Pricing() {
       },
     });
 
-    // Toggle
     gsap.from(toggleRef.current, {
       y: 20, opacity: 0, duration: 0.8, ease: "power3.out",
       scrollTrigger: {
@@ -89,7 +87,6 @@ export default function Pricing() {
       },
     });
 
-    // Cards
     cardsRef.current.forEach((card, i) => {
       if (!card) return;
       gsap.from(card, {
@@ -116,7 +113,7 @@ export default function Pricing() {
         position: "relative",
         zIndex: 1,
         padding: "120px max(40px, 6vw) 160px",
-        borderTop: "1px solid rgba(255,255,255,0.06)",
+        borderTop: "1px solid rgba(99,155,255,0.1)",
       }}
     >
       {/* Heading */}
@@ -124,7 +121,7 @@ export default function Pricing() {
         <p style={{
           fontSize: "11px",
           letterSpacing: "0.2em",
-          color: "rgba(255,255,255,0.25)",
+          color: "rgba(180,210,255,0.55)",
           marginBottom: "20px",
         }}>
           PRICING
@@ -133,7 +130,7 @@ export default function Pricing() {
           fontSize: "clamp(2rem, 5vw, 4rem)",
           fontWeight: 600,
           letterSpacing: "-0.04em",
-          color: "#ffffff",
+          color: "#e8f1ff",
           lineHeight: 1.1,
           marginBottom: "16px",
         }}>
@@ -141,7 +138,7 @@ export default function Pricing() {
         </h2>
         <p style={{
           fontSize: "15px",
-          color: "rgba(255,255,255,0.35)",
+          color: "rgba(180,210,255,0.65)",
           maxWidth: "420px",
           margin: "0 auto",
           lineHeight: 1.7,
@@ -164,7 +161,7 @@ export default function Pricing() {
       >
         <span style={{
           fontSize: "13px",
-          color: !annual ? "#fff" : "rgba(255,255,255,0.35)",
+          color: !annual ? "#e8f1ff" : "rgba(180,210,255,0.45)",
           transition: "color 0.3s",
         }}>
           Monthly
@@ -177,8 +174,8 @@ export default function Pricing() {
             width: 44,
             height: 24,
             borderRadius: 12,
-            border: "1px solid rgba(255,255,255,0.15)",
-            background: annual ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.05)",
+            border: "1px solid rgba(99,155,255,0.2)",
+            background: annual ? "rgba(59,130,246,0.3)" : "rgba(99,155,255,0.08)",
             position: "relative",
             cursor: "pointer",
             transition: "background 0.3s",
@@ -190,14 +187,14 @@ export default function Pricing() {
             left: annual ? 22 : 3,
             width: 16, height: 16,
             borderRadius: "50%",
-            background: "#ffffff",
+            background: annual ? "#3b82f6" : "#e8f1ff",
             transition: "left 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)",
           }} />
         </div>
 
         <span style={{
           fontSize: "13px",
-          color: annual ? "#fff" : "rgba(255,255,255,0.35)",
+          color: annual ? "#e8f1ff" : "rgba(180,210,255,0.45)",
           transition: "color 0.3s",
         }}>
           Annual
@@ -233,11 +230,11 @@ export default function Pricing() {
               padding: plan.highlight ? "40px 32px" : "32px",
               borderRadius: "24px",
               border: plan.highlight
-                ? "1px solid rgba(255,255,255,0.2)"
-                : "1px solid rgba(255,255,255,0.07)",
+                ? "1px solid rgba(99,155,255,0.3)"
+                : "1px solid rgba(99,155,255,0.1)",
               background: plan.highlight
-                ? "rgba(255,255,255,0.06)"
-                : "rgba(255,255,255,0.01)",
+                ? "rgba(59,130,246,0.08)"
+                : "rgba(99,155,255,0.02)",
               position: "relative",
               backdropFilter: "blur(10px)",
             }}
@@ -251,8 +248,8 @@ export default function Pricing() {
                 transform: "translateX(-50%)",
                 padding: "4px 16px",
                 borderRadius: "100px",
-                background: "#ffffff",
-                color: "#000000",
+                background: "linear-gradient(135deg, #3b82f6, #6366f1)",
+                color: "#ffffff",
                 fontSize: "10px",
                 fontWeight: 600,
                 letterSpacing: "0.08em",
@@ -266,7 +263,7 @@ export default function Pricing() {
             <p style={{
               fontSize: "12px",
               letterSpacing: "0.12em",
-              color: "rgba(255,255,255,0.4)",
+              color: "rgba(180,210,255,0.6)",
               marginBottom: "12px",
             }}>
               {plan.name.toUpperCase()}
@@ -283,7 +280,7 @@ export default function Pricing() {
                 fontSize: "clamp(2.5rem, 5vw, 3.5rem)",
                 fontWeight: 600,
                 letterSpacing: "-0.04em",
-                color: "#ffffff",
+                color: "#e8f1ff",
                 lineHeight: 1,
               }}>
                 {plan.monthlyPrice === 0
@@ -293,7 +290,7 @@ export default function Pricing() {
               {plan.monthlyPrice > 0 && (
                 <span style={{
                   fontSize: "13px",
-                  color: "rgba(255,255,255,0.3)",
+                  color: "rgba(180,210,255,0.6)",
                   marginBottom: "6px",
                 }}>
                   / mo
@@ -303,7 +300,7 @@ export default function Pricing() {
 
             <p style={{
               fontSize: "13px",
-              color: "rgba(255,255,255,0.35)",
+              color: "rgba(180,210,255,0.65)",
               lineHeight: 1.6,
               marginBottom: "28px",
               minHeight: "40px",
@@ -314,7 +311,7 @@ export default function Pricing() {
             {/* Divider */}
             <div style={{
               height: "1px",
-              background: "rgba(255,255,255,0.07)",
+              background: "rgba(99,155,255,0.1)",
               marginBottom: "24px",
             }} />
 
@@ -334,7 +331,7 @@ export default function Pricing() {
                     alignItems: "center",
                     gap: "10px",
                     fontSize: "13px",
-                    color: "rgba(255,255,255,0.6)",
+                    color: "rgba(200,225,255,0.8)",
                   }}
                 >
                   <span style={{

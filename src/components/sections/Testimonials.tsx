@@ -61,7 +61,6 @@ export default function Testimonials() {
   const headingRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Heading reveal
     gsap.from(headingRef.current, {
       y: 60, opacity: 0, duration: 1.2, ease: "power3.out",
       scrollTrigger: {
@@ -70,7 +69,6 @@ export default function Testimonials() {
       },
     });
 
-    // Cards stagger in
     cardsRef.current.forEach((card, i) => {
       if (!card) return;
       gsap.from(card, {
@@ -95,7 +93,7 @@ export default function Testimonials() {
         position: "relative",
         zIndex: 1,
         padding: "120px max(40px, 6vw) 160px",
-        borderTop: "1px solid rgba(255,255,255,0.06)",
+        borderTop: "1px solid rgba(99,155,255,0.1)",
       }}
     >
       {/* Heading */}
@@ -103,7 +101,7 @@ export default function Testimonials() {
         <p style={{
           fontSize: "11px",
           letterSpacing: "0.2em",
-          color: "rgba(255,255,255,0.25)",
+          color: "rgba(180,210,255,0.55)",
           marginBottom: "20px",
         }}>
           WHAT FARMERS SAY
@@ -112,7 +110,7 @@ export default function Testimonials() {
           fontSize: "clamp(2rem, 5vw, 4rem)",
           fontWeight: 600,
           letterSpacing: "-0.04em",
-          color: "#ffffff",
+          color: "#e8f1ff",
           lineHeight: 1.1,
           maxWidth: "600px",
           margin: "0 auto",
@@ -136,8 +134,8 @@ export default function Testimonials() {
             style={{
               padding: "32px",
               borderRadius: "20px",
-              border: "1px solid rgba(255,255,255,0.06)",
-              background: "rgba(255,255,255,0.02)",
+              border: "1px solid rgba(99,155,255,0.1)",
+              background: "rgba(99,155,255,0.03)",
               backdropFilter: "blur(10px)",
               display: "flex",
               flexDirection: "column",
@@ -152,9 +150,9 @@ export default function Testimonials() {
             }}
             onMouseLeave={(e) => {
               (e.currentTarget as HTMLDivElement).style.borderColor =
-                "rgba(255,255,255,0.06)";
+                "rgba(99,155,255,0.1)";
               (e.currentTarget as HTMLDivElement).style.background =
-                "rgba(255,255,255,0.02)";
+                "rgba(99,155,255,0.03)";
             }}
           >
             {/* Stars */}
@@ -169,7 +167,7 @@ export default function Testimonials() {
             {/* Quote */}
             <p style={{
               fontSize: "15px",
-              color: "rgba(255,255,255,0.65)",
+              color: "rgba(200,225,255,0.8)",
               lineHeight: 1.75,
               flex: 1,
             }}>
@@ -197,14 +195,14 @@ export default function Testimonials() {
                 <p style={{
                   fontSize: "13px",
                   fontWeight: 500,
-                  color: "rgba(255,255,255,0.85)",
+                  color: "#e0eaff",
                   marginBottom: "2px",
                 }}>
                   {t.author}
                 </p>
                 <p style={{
                   fontSize: "11px",
-                  color: "rgba(255,255,255,0.3)",
+                  color: "rgba(180,210,255,0.6)",
                 }}>
                   {t.role}
                 </p>

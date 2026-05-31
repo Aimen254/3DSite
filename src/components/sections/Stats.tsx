@@ -5,10 +5,10 @@ import { useEffect, useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 
 const STATS = [
-  { value: 2400,  suffix: "+",  label: "Farms using Oryzo"     },
+  { value: 2400,  suffix: "+",  label: "Farms using Oryzo"        },
   { value: 94,    suffix: "%",  label: "Yield prediction accuracy" },
-  { value: 1.2,   suffix: "M", label: "Hectares monitored"     },
-  { value: 38,    suffix: "%",  label: "Average yield increase" },
+  { value: 1.2,   suffix: "M", label: "Hectares monitored"        },
+  { value: 38,    suffix: "%",  label: "Average yield increase"    },
 ];
 
 export default function Stats() {
@@ -51,7 +51,7 @@ export default function Stats() {
         position: "relative",
         zIndex: 1,
         padding: "120px max(40px, 6vw)",
-        borderTop: "1px solid rgba(255,255,255,0.06)",
+        borderTop: "1px solid rgba(99,155,255,0.1)",
       }}
     >
       {/* Label */}
@@ -59,7 +59,7 @@ export default function Stats() {
         textAlign: "center",
         fontSize: "11px",
         letterSpacing: "0.2em",
-        color: "rgba(255,255,255,0.25)",
+        color: "rgba(180,210,255,0.55)",
         marginBottom: "64px",
       }}>
         TRUSTED BY FARMERS WORLDWIDE
@@ -79,20 +79,16 @@ export default function Stats() {
               fontSize: "clamp(2.5rem, 5vw, 4rem)",
               fontWeight: 600,
               letterSpacing: "-0.04em",
-              color: "#ffffff",
+              color: "#e8f1ff",
               lineHeight: 1,
               marginBottom: "12px",
             }}>
-              <span
-                ref={(el) => { numRefs.current[i] = el; }}
-              >
-                0
-              </span>
+              <span ref={(el) => { numRefs.current[i] = el; }}>0</span>
               <span>{stat.suffix}</span>
             </div>
             <p style={{
               fontSize: "13px",
-              color: "rgba(255,255,255,0.35)",
+              color: "rgba(180,210,255,0.65)",
               letterSpacing: "0.02em",
             }}>
               {stat.label}

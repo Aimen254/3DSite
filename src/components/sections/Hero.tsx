@@ -16,22 +16,18 @@ export default function Hero() {
   useEffect(() => {
     const tl = gsap.timeline({ delay: 0.2 });
 
-    // Badge slides down
     tl.from(badgeRef.current, {
       y: -20, opacity: 0, duration: 0.8, ease: "power3.out",
     }, 0.4)
 
-    // Buttons fade up
     .from(buttonsRef.current, {
       y: 30, opacity: 0, duration: 1, ease: "power3.out",
     }, 1.2)
 
-    // Scroll indicator
     .from(scrollRef.current, {
       opacity: 0, duration: 0.8,
     }, 1.8);
 
-    // Animate the scroll line infinitely
     gsap.to(lineRef.current, {
       scaleY: 0,
       transformOrigin: "top center",
@@ -66,8 +62,8 @@ export default function Hero() {
           gap: "8px",
           padding: "6px 16px",
           borderRadius: "100px",
-          border: "1px solid rgba(255,255,255,0.12)",
-          background: "rgba(255,255,255,0.04)",
+          border: "1px solid rgba(99,155,255,0.25)",
+          background: "rgba(99,155,255,0.08)",
           marginBottom: "32px",
           backdropFilter: "blur(10px)",
         }}
@@ -81,7 +77,7 @@ export default function Hero() {
         }} />
         <span style={{
           fontSize: "12px",
-          color: "rgba(255,255,255,0.6)",
+          color: "rgba(180,210,255,0.85)",
           letterSpacing: "0.06em",
         }}>
           NOW IN EARLY ACCESS
@@ -97,7 +93,7 @@ export default function Hero() {
           fontWeight: 600,
           letterSpacing: "-0.04em",
           lineHeight: 1,
-          color: "#ffffff",
+          color: "#e8f1ff",
           maxWidth: "900px",
           marginBottom: "24px",
         }}
@@ -111,7 +107,7 @@ export default function Hero() {
         delay={1.0}
         style={{
           fontSize: "clamp(1rem, 2vw, 1.15rem)",
-          color: "rgba(255,255,255,0.4)",
+          color: "rgba(180,210,255,0.7)",
           maxWidth: "480px",
           lineHeight: 1.75,
           marginBottom: "48px",
@@ -155,14 +151,14 @@ export default function Hero() {
         <span style={{
           fontSize: "10px",
           letterSpacing: "0.15em",
-          color: "rgba(255,255,255,0.25)",
+          color: "rgba(180,210,255,0.5)",
         }}>
           SCROLL
         </span>
         <div style={{
           width: "1px",
           height: "48px",
-          background: "rgba(255,255,255,0.15)",
+          background: "rgba(99,155,255,0.25)",
           overflow: "hidden",
           position: "relative",
         }}>
@@ -172,7 +168,7 @@ export default function Hero() {
               position: "absolute",
               top: 0, left: 0,
               width: "100%", height: "100%",
-              background: "rgba(255,255,255,0.8)",
+              background: "rgba(180,210,255,0.9)",
             }}
           />
         </div>

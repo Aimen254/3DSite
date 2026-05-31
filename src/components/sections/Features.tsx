@@ -51,13 +51,13 @@ export default function Features() {
     const activateDot = (i: number) => {
       dotRefs.current.forEach((d, j) => {
         if (!d) return;
-        d.style.background = j === i ? "#ffffff" : "rgba(255,255,255,0.2)";
+        d.style.background = j === i ? "#e8f1ff" : "rgba(99,155,255,0.4)";
         d.style.transform  = j === i ? "scale(1.5)" : "scale(1)";
       });
     };
     const deactivateDot = (i: number) => {
       if (dotRefs.current[i])
-        dotRefs.current[i]!.style.background = "rgba(255,255,255,0.2)";
+        dotRefs.current[i]!.style.background = "rgba(99,155,255,0.4)";
     };
 
     const section = sectionRef.current;
@@ -175,7 +175,7 @@ export default function Features() {
             <span style={{
               fontSize: "10px",
               letterSpacing: "0.2em",
-              color: "rgba(255,255,255,0.25)",
+              color: "rgba(180,210,255,0.55)",
             }}>
               FEATURES
             </span>
@@ -183,7 +183,7 @@ export default function Features() {
             {/* Progress track */}
             <div style={{
               width: "80px", height: "1px",
-              background: "rgba(255,255,255,0.08)",
+              background: "rgba(99,155,255,0.15)",
               position: "relative",
               overflow: "hidden",
             }}>
@@ -193,7 +193,7 @@ export default function Features() {
                   position: "absolute",
                   top: 0, left: 0,
                   width: "100%", height: "100%",
-                  background: "rgba(255,255,255,0.6)",
+                  background: "rgba(180,210,255,0.85)",
                   transformOrigin: "left center",
                   transform: "scaleX(0)",
                 }}
@@ -209,7 +209,7 @@ export default function Features() {
                   style={{
                     width: 5, height: 5,
                     borderRadius: "50%",
-                    background: "rgba(255,255,255,0.2)",
+                    background: "rgba(99,155,255,0.4)",
                     transition: "all 0.3s ease",
                   }}
                 />
@@ -245,7 +245,7 @@ export default function Features() {
                   <span style={{
                     fontSize: "11px",
                     letterSpacing: "0.15em",
-                    color: "rgba(255,255,255,0.25)",
+                    color: "rgba(180,210,255,0.55)",
                   }}>
                     {feature.number}
                   </span>
@@ -267,7 +267,7 @@ export default function Features() {
                   fontWeight: 600,
                   letterSpacing: "-0.04em",
                   lineHeight: 1.05,
-                  color: "#ffffff",
+                  color: "#e8f1ff",
                   marginBottom: "20px",
                 }}>
                   {feature.title}
@@ -276,7 +276,7 @@ export default function Features() {
                 {/* Description */}
                 <p style={{
                   fontSize: "clamp(0.9rem, 1.4vw, 1.05rem)",
-                  color: "rgba(255,255,255,0.4)",
+                  color: "rgba(180,210,255,0.7)",
                   lineHeight: 1.8,
                   maxWidth: "380px",
                 }}>
@@ -316,9 +316,9 @@ export default function Features() {
               width: "260px",
               height: "440px",
               borderRadius: "130px",
-              border: "1px solid rgba(255,255,255,0.04)",
+              border: "1px solid rgba(99,155,255,0.1)",
               background:
-                "radial-gradient(ellipse 60% 80% at 50% 60%, rgba(200,232,192,0.04) 0%, transparent 70%)",
+                "radial-gradient(ellipse 60% 80% at 50% 60%, rgba(99,155,255,0.06) 0%, transparent 70%)",
               position: "relative",
             }}
           >
@@ -329,7 +329,7 @@ export default function Features() {
               left: "50%",
               width: "1px",
               height: "80%",
-              background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.04), transparent)",
+              background: "linear-gradient(to bottom, transparent, rgba(99,155,255,0.1), transparent)",
               transform: "translateX(-50%)",
             }} />
           </div>
@@ -342,7 +342,7 @@ export default function Features() {
                 position: "absolute",
                 fontSize: "10px",
                 letterSpacing: "0.12em",
-                color: "rgba(255,255,255,0.15)",
+                color: "rgba(180,210,255,0.4)",
                 ...(i === 0 && { top: "25%",  left: "5%"  }),
                 ...(i === 1 && { top: "50%",  left: "2%"  }),
                 ...(i === 2 && { top: "72%",  left: "5%"  }),

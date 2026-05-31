@@ -24,7 +24,6 @@ export default function Footer() {
   const btnRef      = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    // Big text parallax
     gsap.to(bigTextRef.current, {
       yPercent: -20,
       ease: "none",
@@ -36,7 +35,6 @@ export default function Footer() {
       },
     });
 
-    // Footer content fade in
     gsap.from(footerRef.current?.querySelectorAll(".footer-col") ?? [], {
       y: 40,
       opacity: 0,
@@ -56,14 +54,14 @@ export default function Footer() {
       style={{
         position: "relative",
         zIndex: 1,
-        borderTop: "1px solid rgba(255,255,255,0.06)",
+        borderTop: "1px solid rgba(99,155,255,0.1)",
         overflow: "hidden",
       }}
     >
       {/* Newsletter strip */}
       <div style={{
         padding: "80px max(40px, 6vw)",
-        borderBottom: "1px solid rgba(255,255,255,0.06)",
+        borderBottom: "1px solid rgba(99,155,255,0.1)",
         display: "flex",
         flexWrap: "wrap",
         alignItems: "center",
@@ -75,14 +73,14 @@ export default function Footer() {
             fontSize: "clamp(1.3rem, 3vw, 2rem)",
             fontWeight: 600,
             letterSpacing: "-0.03em",
-            color: "#ffffff",
+            color: "#e8f1ff",
             marginBottom: "8px",
           }}>
             Stay ahead of the season
           </h3>
           <p style={{
             fontSize: "14px",
-            color: "rgba(255,255,255,0.35)",
+            color: "rgba(180,210,255,0.65)",
           }}>
             Agronomy insights, product updates, and farmer stories.
           </p>
@@ -93,9 +91,9 @@ export default function Footer() {
           display: "flex",
           gap: "0",
           borderRadius: "100px",
-          border: "1px solid rgba(255,255,255,0.12)",
+          border: "1px solid rgba(99,155,255,0.2)",
           overflow: "hidden",
-          background: "rgba(255,255,255,0.03)",
+          background: "rgba(99,155,255,0.04)",
           flexShrink: 0,
         }}>
           <input
@@ -107,7 +105,7 @@ export default function Footer() {
               border: "none",
               outline: "none",
               padding: "12px 20px",
-              color: "#ffffff",
+              color: "#e8f1ff",
               fontSize: "14px",
               width: "220px",
               fontFamily: "inherit",
@@ -117,8 +115,8 @@ export default function Footer() {
             ref={btnRef}
             style={{
               padding: "12px 24px",
-              background: "#ffffff",
-              color: "#000000",
+              background: "linear-gradient(135deg, #3b82f6, #6366f1)",
+              color: "#ffffff",
               border: "none",
               fontSize: "13px",
               fontWeight: 500,
@@ -145,14 +143,14 @@ export default function Footer() {
         display: "grid",
         gridTemplateColumns: "2fr repeat(4, 1fr)",
         gap: "48px",
-        borderBottom: "1px solid rgba(255,255,255,0.06)",
+        borderBottom: "1px solid rgba(99,155,255,0.1)",
       }}>
         {/* Brand col */}
         <div className="footer-col">
           <div style={{
             fontSize: "20px",
             fontWeight: 600,
-            color: "#ffffff",
+            color: "#e8f1ff",
             letterSpacing: "-0.03em",
             marginBottom: "16px",
           }}>
@@ -160,7 +158,7 @@ export default function Footer() {
           </div>
           <p style={{
             fontSize: "13px",
-            color: "rgba(255,255,255,0.3)",
+            color: "rgba(180,210,255,0.6)",
             lineHeight: 1.75,
             maxWidth: "220px",
             marginBottom: "24px",
@@ -176,24 +174,24 @@ export default function Footer() {
                 style={{
                   width: 32, height: 32,
                   borderRadius: "50%",
-                  border: "1px solid rgba(255,255,255,0.1)",
+                  border: "1px solid rgba(99,155,255,0.15)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   fontSize: "11px",
-                  color: "rgba(255,255,255,0.4)",
+                  color: "rgba(180,210,255,0.6)",
                   textDecoration: "none",
                   transition: "border-color 0.2s, color 0.2s",
                 }}
                 onMouseEnter={(e) => {
                   const el = e.currentTarget as HTMLElement;
-                  el.style.borderColor = "rgba(255,255,255,0.3)";
-                  el.style.color = "#fff";
+                  el.style.borderColor = "rgba(99,155,255,0.5)";
+                  el.style.color = "#e8f1ff";
                 }}
                 onMouseLeave={(e) => {
                   const el = e.currentTarget as HTMLElement;
-                  el.style.borderColor = "rgba(255,255,255,0.1)";
-                  el.style.color = "rgba(255,255,255,0.4)";
+                  el.style.borderColor = "rgba(99,155,255,0.15)";
+                  el.style.color = "rgba(180,210,255,0.6)";
                 }}
               >
                 {s.label[0]}
@@ -208,7 +206,7 @@ export default function Footer() {
             <p style={{
               fontSize: "11px",
               letterSpacing: "0.12em",
-              color: "rgba(255,255,255,0.25)",
+              color: "rgba(180,210,255,0.55)",
               marginBottom: "20px",
             }}>
               {group.toUpperCase()}
@@ -225,16 +223,16 @@ export default function Footer() {
                     href="#"
                     style={{
                       fontSize: "13px",
-                      color: "rgba(255,255,255,0.4)",
+                      color: "rgba(180,210,255,0.65)",
                       textDecoration: "none",
                       transition: "color 0.2s",
                     }}
                     onMouseEnter={(e) =>
-                      ((e.target as HTMLElement).style.color = "#fff")
+                      ((e.target as HTMLElement).style.color = "#e8f1ff")
                     }
                     onMouseLeave={(e) =>
                       ((e.target as HTMLElement).style.color =
-                        "rgba(255,255,255,0.4)")
+                        "rgba(180,210,255,0.65)")
                     }
                   >
                     {link}
@@ -257,13 +255,13 @@ export default function Footer() {
       }}>
         <p style={{
           fontSize: "12px",
-          color: "rgba(255,255,255,0.2)",
+          color: "rgba(180,210,255,0.5)",
         }}>
           © {new Date().getFullYear()} Oryzo Inc. All rights reserved.
         </p>
         <p style={{
           fontSize: "12px",
-          color: "rgba(255,255,255,0.15)",
+          color: "rgba(180,210,255,0.4)",
         }}>
           Built with ♥ for rice farmers worldwide
         </p>
@@ -279,7 +277,7 @@ export default function Footer() {
           transform: "translateX(-50%)",
           fontSize: "clamp(5rem, 20vw, 18rem)",
           fontWeight: 700,
-          color: "rgba(255,255,255,0.018)",
+          color: "rgba(99,155,255,0.025)",
           letterSpacing: "-0.06em",
           whiteSpace: "nowrap",
           pointerEvents: "none",
