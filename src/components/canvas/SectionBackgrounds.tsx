@@ -27,7 +27,7 @@ const _statsPos = (() => {
   return pos;
 })();
 
-const _CRYSTAL_COLORS = ["#e879f9", "#a78bfa", "#38bdf8", "#34d399", "#fb923c", "#f472b6"];
+const _CRYSTAL_COLORS = ["#7570BC", "#C7DBF7", "#C59594", "#BFC7DE", "#9B96D4", "#E8B4B3"];
 const _crystalShapes = Array.from({ length: 16 }, (_, i) => ({
   pos:   new THREE.Vector3(
     (Math.random() - 0.5) * 10,
@@ -113,17 +113,17 @@ function StatsGlobe({ v, mx, my }: { v: number; mx: number; my: number }) {
     <>
       <points ref={ref} geometry={geo}>
         <pointsMaterial
-          size={0.022} color="#60a5fa" transparent opacity={v * 0.55}
+          size={0.022} color="#7570BC" transparent opacity={v * 0.65}
           sizeAttenuation depthWrite={false} blending={THREE.AdditiveBlending}
         />
       </points>
       <mesh ref={rRef}>
         <torusGeometry args={[3.6, 0.007, 8, 128]} />
-        <meshStandardMaterial color="#93c5fd" transparent opacity={v * 0.18} depthWrite={false} />
+        <meshStandardMaterial color="#C7DBF7" transparent opacity={v * 0.22} depthWrite={false} />
       </mesh>
       <mesh ref={r2}>
         <torusGeometry args={[3.6, 0.005, 8, 128]} />
-        <meshStandardMaterial color="#bfdbfe" transparent opacity={v * 0.12} depthWrite={false} />
+        <meshStandardMaterial color="#BFC7DE" transparent opacity={v * 0.18} depthWrite={false} />
       </mesh>
     </>
   );
@@ -176,9 +176,9 @@ function TestimonialsCrystals({ v, mx, my }: { v: number; mx: number; my: number
 function PricingKnot({ v, mx, my }: { v: number; mx: number; my: number }) {
   const kRef = useRef<THREE.Mesh>(null);
   const rings = useMemo(() => [
-    { r: 3.3, tube: 0.006, color: "#a855f7", speed:  0.07, rx: Math.PI / 2, rz: 0 },
-    { r: 4.2, tube: 0.004, color: "#7c3aed", speed: -0.05, rx: Math.PI / 3, rz: 0.3 },
-    { r: 2.7, tube: 0.008, color: "#c084fc", speed:  0.11, rx: 0.4,         rz: 0.6 },
+    { r: 3.3, tube: 0.006, color: "#7570BC", speed:  0.07, rx: Math.PI / 2, rz: 0 },
+    { r: 4.2, tube: 0.004, color: "#C59594", speed: -0.05, rx: Math.PI / 3, rz: 0.3 },
+    { r: 2.7, tube: 0.008, color: "#BFC7DE", speed:  0.11, rx: 0.4,         rz: 0.6 },
   ], []);
   const rRefs = useRef<(THREE.Mesh | null)[]>([]);
 
@@ -200,7 +200,7 @@ function PricingKnot({ v, mx, my }: { v: number; mx: number; my: number }) {
     <>
       <mesh ref={kRef} scale={1.9}>
         <torusKnotGeometry args={[1, 0.28, 140, 20, 2, 3]} />
-        <meshStandardMaterial color="#c084fc" transparent opacity={v * 0.28} wireframe />
+        <meshStandardMaterial color="#7570BC" transparent opacity={v * 0.32} wireframe />
       </mesh>
       {rings.map((r, i) => (
         <mesh
@@ -251,12 +251,12 @@ function FooterStars({ v }: { v: number }) {
   return (
     <>
       <points ref={starRef} geometry={starGeo}>
-        <pointsMaterial size={0.011} color="#ffffff" transparent
-          opacity={v * 0.7} sizeAttenuation depthWrite={false} />
+        <pointsMaterial size={0.011} color="#C7DBF7" transparent
+          opacity={v * 0.75} sizeAttenuation depthWrite={false} />
       </points>
       <points ref={cloudRef} geometry={cloudGeo}>
-        <pointsMaterial size={0.035} color="#a78bfa" transparent
-          opacity={v * 0.3} sizeAttenuation depthWrite={false}
+        <pointsMaterial size={0.035} color="#7570BC" transparent
+          opacity={v * 0.4} sizeAttenuation depthWrite={false}
           blending={THREE.AdditiveBlending} />
       </points>
     </>

@@ -13,12 +13,13 @@
 :root {
   --font-primary: "Geist", system-ui, sans-serif;
 
-  --color-bg:        #060a18;
-  --color-surface:   #0d1528;
-  --color-border:    rgba(99, 155, 255, 0.12);
-  --color-text:      #e8f1ff;
-  --color-muted:     rgba(180, 210, 255, 0.7);
-  --color-accent:    #38bdf8;
+  --color-bg:        #0C0B18;
+  --color-surface:   #14122A;
+  --color-border:    rgba(117, 112, 188, 0.2);
+  --color-text:      #C7DBF7;
+  --color-muted:     rgba(191, 199, 222, 0.7);
+  --color-accent:    #7570BC;
+  --color-rose:      #C59594;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-expo:  cubic-bezier(0.7, 0, 0.84, 0);
@@ -32,7 +33,7 @@
 }
 
 html {
-  scroll-behavior: auto; /* Lenis handles smooth scroll */
+  scroll-behavior: auto;
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-primary);
@@ -50,25 +51,20 @@ body {
 
 /* ── Selection ───────────────────────────────── */
 ::selection {
-  background: rgba(99, 155, 255, 0.25);
-  color: #e8f1ff;
+  background: rgba(117, 112, 188, 0.35);
+  color: #C7DBF7;
 }
 
 /* ── Scrollbar ───────────────────────────────── */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--color-bg); }
-::-webkit-scrollbar-thumb { background: rgba(99, 155, 255, 0.2); border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: rgba(117, 112, 188, 0.35); border-radius: 2px; }
 
 
 /* ── Mobile ───────────────────────────────────── */
 @media (max-width: 768px) {
-  /* Hide custom cursor on touch devices */
   * { cursor: auto !important; }
-
-  /* Tighter nav */
   nav { padding: 16px 20px !important; }
-
-  /* Footer grid: single column */
   footer > div:nth-child(2) {
     grid-template-columns: 1fr 1fr !important;
   }

@@ -11,15 +11,7 @@ const PLANS = [
     monthlyPrice: 0,
     annualPrice: 0,
     description: "For small farms getting started with precision agriculture.",
-    accent: "rgba(99,155,255,0.1)",
-    textAccent: "rgba(180,210,255,0.6)",
-    features: [
-      "Up to 5 hectares",
-      "Weekly crop reports",
-      "Basic yield forecast",
-      "Email support",
-      "1 user account",
-    ],
+    features: ["Up to 5 hectares", "Weekly crop reports", "Basic yield forecast", "Email support", "1 user account"],
     cta: "Start free",
     highlight: false,
   },
@@ -28,17 +20,7 @@ const PLANS = [
     monthlyPrice: 49,
     annualPrice: 39,
     description: "For serious farmers ready to maximise every harvest.",
-    accent: "rgba(255,255,255,0.95)",
-    textAccent: "#000000",
-    features: [
-      "Up to 100 hectares",
-      "Daily satellite monitoring",
-      "AI yield prediction",
-      "Precision irrigation control",
-      "Market price intelligence",
-      "5 user accounts",
-      "Priority support",
-    ],
+    features: ["Up to 100 hectares", "Daily satellite monitoring", "AI yield prediction", "Precision irrigation control", "Market price intelligence", "5 user accounts", "Priority support"],
     cta: "Get started",
     highlight: true,
   },
@@ -47,17 +29,7 @@ const PLANS = [
     monthlyPrice: 199,
     annualPrice: 159,
     description: "For cooperatives and large-scale commercial operations.",
-    accent: "rgba(99,155,255,0.1)",
-    textAccent: "rgba(180,210,255,0.6)",
-    features: [
-      "Unlimited hectares",
-      "Real-time drone integration",
-      "Custom AI model training",
-      "API access",
-      "Unlimited users",
-      "Dedicated account manager",
-      "SLA guarantee",
-    ],
+    features: ["Unlimited hectares", "Real-time drone integration", "Custom AI model training", "API access", "Unlimited users", "Dedicated account manager", "SLA guarantee"],
     cta: "Contact sales",
     highlight: false,
   },
@@ -73,36 +45,19 @@ export default function Pricing() {
   useEffect(() => {
     gsap.from(headingRef.current, {
       y: 60, opacity: 0, duration: 1.2, ease: "power3.out",
-      scrollTrigger: {
-        trigger: headingRef.current,
-        start: "top 85%",
-      },
+      scrollTrigger: { trigger: headingRef.current, start: "top 85%" },
     });
-
     gsap.from(toggleRef.current, {
       y: 20, opacity: 0, duration: 0.8, ease: "power3.out",
-      scrollTrigger: {
-        trigger: toggleRef.current,
-        start: "top 90%",
-      },
+      scrollTrigger: { trigger: toggleRef.current, start: "top 90%" },
     });
-
     cardsRef.current.forEach((card, i) => {
       if (!card) return;
       gsap.from(card, {
-        y: 100,
-        opacity: 0,
-        duration: 1.1,
-        delay: i * 0.12,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: card,
-          start: "top 90%",
-          toggleActions: "play none none none",
-        },
+        y: 100, opacity: 0, duration: 1.1, delay: i * 0.12, ease: "power3.out",
+        scrollTrigger: { trigger: card, start: "top 90%", toggleActions: "play none none none" },
       });
     });
-
     return () => ScrollTrigger.getAll().forEach((t) => t.kill());
   }, []);
 
@@ -110,103 +65,53 @@ export default function Pricing() {
     <section
       ref={sectionRef}
       style={{
-        position: "relative",
-        zIndex: 1,
+        position: "relative", zIndex: 1,
         padding: "120px max(40px, 6vw) 160px",
-        borderTop: "1px solid rgba(99,155,255,0.1)",
+        borderTop: "1px solid rgba(117,112,188,0.15)",
       }}
     >
-      {/* Heading */}
       <div ref={headingRef} style={{ textAlign: "center", marginBottom: "48px" }}>
-        <p style={{
-          fontSize: "11px",
-          letterSpacing: "0.2em",
-          color: "rgba(180,210,255,0.55)",
-          marginBottom: "20px",
-        }}>
+        <p style={{ fontSize: "11px", letterSpacing: "0.2em", color: "rgba(191,199,222,0.55)", marginBottom: "20px" }}>
           PRICING
         </p>
         <h2 style={{
-          fontSize: "clamp(2rem, 5vw, 4rem)",
-          fontWeight: 600,
-          letterSpacing: "-0.04em",
-          color: "#e8f1ff",
-          lineHeight: 1.1,
-          marginBottom: "16px",
+          fontSize: "clamp(2rem, 5vw, 4rem)", fontWeight: 600,
+          letterSpacing: "-0.04em", color: "#C7DBF7", lineHeight: 1.1, marginBottom: "16px",
         }}>
           Simple, transparent pricing
         </h2>
-        <p style={{
-          fontSize: "15px",
-          color: "rgba(180,210,255,0.65)",
-          maxWidth: "420px",
-          margin: "0 auto",
-          lineHeight: 1.7,
-        }}>
-          Start free, scale when you&apos;re ready.
-          No hidden fees, no long-term contracts.
+        <p style={{ fontSize: "15px", color: "rgba(191,199,222,0.7)", maxWidth: "420px", margin: "0 auto", lineHeight: 1.7 }}>
+          Start free, scale when you&apos;re ready. No hidden fees, no long-term contracts.
         </p>
       </div>
 
-      {/* Monthly / Annual toggle */}
-      <div
-        ref={toggleRef}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: "12px",
-          marginBottom: "64px",
-        }}
-      >
-        <span style={{
-          fontSize: "13px",
-          color: !annual ? "#e8f1ff" : "rgba(180,210,255,0.45)",
-          transition: "color 0.3s",
-        }}>
+      {/* Toggle */}
+      <div ref={toggleRef} style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "12px", marginBottom: "64px" }}>
+        <span style={{ fontSize: "13px", color: !annual ? "#C7DBF7" : "rgba(191,199,222,0.45)", transition: "color 0.3s" }}>
           Monthly
         </span>
-
-        {/* Toggle switch */}
         <div
           onClick={() => setAnnual((v) => !v)}
           style={{
-            width: 44,
-            height: 24,
-            borderRadius: 12,
-            border: "1px solid rgba(99,155,255,0.2)",
-            background: annual ? "rgba(59,130,246,0.3)" : "rgba(99,155,255,0.08)",
-            position: "relative",
-            cursor: "pointer",
-            transition: "background 0.3s",
+            width: 44, height: 24, borderRadius: 12,
+            border: "1px solid rgba(117,112,188,0.3)",
+            background: annual ? "rgba(117,112,188,0.3)" : "rgba(117,112,188,0.08)",
+            position: "relative", cursor: "pointer", transition: "background 0.3s",
           }}
         >
           <div style={{
-            position: "absolute",
-            top: 3,
-            left: annual ? 22 : 3,
-            width: 16, height: 16,
-            borderRadius: "50%",
-            background: annual ? "#3b82f6" : "#e8f1ff",
+            position: "absolute", top: 3, left: annual ? 22 : 3,
+            width: 16, height: 16, borderRadius: "50%",
+            background: annual ? "#7570BC" : "#C7DBF7",
             transition: "left 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)",
           }} />
         </div>
-
-        <span style={{
-          fontSize: "13px",
-          color: annual ? "#e8f1ff" : "rgba(180,210,255,0.45)",
-          transition: "color 0.3s",
-        }}>
+        <span style={{ fontSize: "13px", color: annual ? "#C7DBF7" : "rgba(191,199,222,0.45)", transition: "color 0.3s" }}>
           Annual
           <span style={{
-            marginLeft: "8px",
-            padding: "2px 8px",
-            borderRadius: "100px",
-            background: "rgba(74, 222, 128, 0.15)",
-            border: "1px solid rgba(74, 222, 128, 0.3)",
-            fontSize: "10px",
-            color: "#4ade80",
-            letterSpacing: "0.04em",
+            marginLeft: "8px", padding: "2px 8px", borderRadius: "100px",
+            background: "rgba(197,149,148,0.15)", border: "1px solid rgba(197,149,148,0.35)",
+            fontSize: "10px", color: "#C59594", letterSpacing: "0.04em",
           }}>
             SAVE 20%
           </span>
@@ -215,12 +120,8 @@ export default function Pricing() {
 
       {/* Cards */}
       <div style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-        gap: "16px",
-        maxWidth: "1000px",
-        margin: "0 auto",
-        alignItems: "start",
+        display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+        gap: "16px", maxWidth: "1000px", margin: "0 auto", alignItems: "start",
       }}>
         {PLANS.map((plan, i) => (
           <div
@@ -229,135 +130,58 @@ export default function Pricing() {
             style={{
               padding: plan.highlight ? "40px 32px" : "32px",
               borderRadius: "24px",
-              border: plan.highlight
-                ? "1px solid rgba(99,155,255,0.3)"
-                : "1px solid rgba(99,155,255,0.1)",
-              background: plan.highlight
-                ? "rgba(59,130,246,0.08)"
-                : "rgba(99,155,255,0.02)",
-              position: "relative",
-              backdropFilter: "blur(10px)",
+              border: plan.highlight ? "1px solid rgba(117,112,188,0.4)" : "1px solid rgba(117,112,188,0.15)",
+              background: plan.highlight ? "rgba(117,112,188,0.1)" : "rgba(117,112,188,0.03)",
+              position: "relative", backdropFilter: "blur(10px)",
             }}
           >
-            {/* Popular badge */}
             {plan.highlight && (
               <div style={{
-                position: "absolute",
-                top: -12,
-                left: "50%",
+                position: "absolute", top: -12, left: "50%",
                 transform: "translateX(-50%)",
-                padding: "4px 16px",
-                borderRadius: "100px",
-                background: "linear-gradient(135deg, #3b82f6, #6366f1)",
-                color: "#ffffff",
-                fontSize: "10px",
-                fontWeight: 600,
-                letterSpacing: "0.08em",
-                whiteSpace: "nowrap",
+                padding: "4px 16px", borderRadius: "100px",
+                background: "linear-gradient(135deg, #7570BC, #C59594)",
+                color: "#ffffff", fontSize: "10px", fontWeight: 600,
+                letterSpacing: "0.08em", whiteSpace: "nowrap",
               }}>
                 MOST POPULAR
               </div>
             )}
 
-            {/* Plan name */}
-            <p style={{
-              fontSize: "12px",
-              letterSpacing: "0.12em",
-              color: "rgba(180,210,255,0.6)",
-              marginBottom: "12px",
-            }}>
+            <p style={{ fontSize: "12px", letterSpacing: "0.12em", color: "rgba(191,199,222,0.6)", marginBottom: "12px" }}>
               {plan.name.toUpperCase()}
             </p>
 
-            {/* Price */}
-            <div style={{
-              display: "flex",
-              alignItems: "flex-end",
-              gap: "4px",
-              marginBottom: "8px",
-            }}>
-              <span style={{
-                fontSize: "clamp(2.5rem, 5vw, 3.5rem)",
-                fontWeight: 600,
-                letterSpacing: "-0.04em",
-                color: "#e8f1ff",
-                lineHeight: 1,
-              }}>
-                {plan.monthlyPrice === 0
-                  ? "Free"
-                  : `$${annual ? plan.annualPrice : plan.monthlyPrice}`}
+            <div style={{ display: "flex", alignItems: "flex-end", gap: "4px", marginBottom: "8px" }}>
+              <span style={{ fontSize: "clamp(2.5rem, 5vw, 3.5rem)", fontWeight: 600, letterSpacing: "-0.04em", color: "#C7DBF7", lineHeight: 1 }}>
+                {plan.monthlyPrice === 0 ? "Free" : `$${annual ? plan.annualPrice : plan.monthlyPrice}`}
               </span>
               {plan.monthlyPrice > 0 && (
-                <span style={{
-                  fontSize: "13px",
-                  color: "rgba(180,210,255,0.6)",
-                  marginBottom: "6px",
-                }}>
-                  / mo
-                </span>
+                <span style={{ fontSize: "13px", color: "rgba(191,199,222,0.6)", marginBottom: "6px" }}>/ mo</span>
               )}
             </div>
 
-            <p style={{
-              fontSize: "13px",
-              color: "rgba(180,210,255,0.65)",
-              lineHeight: 1.6,
-              marginBottom: "28px",
-              minHeight: "40px",
-            }}>
+            <p style={{ fontSize: "13px", color: "rgba(191,199,222,0.7)", lineHeight: 1.6, marginBottom: "28px", minHeight: "40px" }}>
               {plan.description}
             </p>
 
-            {/* Divider */}
-            <div style={{
-              height: "1px",
-              background: "rgba(99,155,255,0.1)",
-              marginBottom: "24px",
-            }} />
+            <div style={{ height: "1px", background: "rgba(117,112,188,0.15)", marginBottom: "24px" }} />
 
-            {/* Features */}
-            <ul style={{
-              listStyle: "none",
-              display: "flex",
-              flexDirection: "column",
-              gap: "12px",
-              marginBottom: "32px",
-            }}>
+            <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "12px", marginBottom: "32px" }}>
               {plan.features.map((feature) => (
-                <li
-                  key={feature}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "10px",
-                    fontSize: "13px",
-                    color: "rgba(200,225,255,0.8)",
-                  }}
-                >
+                <li key={feature} style={{ display: "flex", alignItems: "center", gap: "10px", fontSize: "13px", color: "rgba(191,199,222,0.85)" }}>
                   <span style={{
-                    width: 16, height: 16,
-                    borderRadius: "50%",
-                    background: "rgba(74,222,128,0.15)",
-                    border: "1px solid rgba(74,222,128,0.3)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "9px",
-                    color: "#4ade80",
-                    flexShrink: 0,
-                  }}>
-                    ✓
-                  </span>
+                    width: 16, height: 16, borderRadius: "50%",
+                    background: "rgba(117,112,188,0.2)", border: "1px solid rgba(117,112,188,0.45)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    fontSize: "9px", color: "#C7DBF7", flexShrink: 0,
+                  }}>✓</span>
                   {feature}
                 </li>
               ))}
             </ul>
 
-            {/* CTA */}
-            <MagneticButton
-              variant={plan.highlight ? "primary" : "outline"}
-              style={{ width: "100%" }}
-            >
+            <MagneticButton variant={plan.highlight ? "primary" : "outline"} style={{ width: "100%" }}>
               {plan.cta}
             </MagneticButton>
           </div>

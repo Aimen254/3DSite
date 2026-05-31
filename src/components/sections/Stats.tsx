@@ -20,7 +20,6 @@ export default function Stats() {
       if (!el) return;
       const target = STATS[i].value;
       const isDecimal = target % 1 !== 0;
-
       ScrollTrigger.create({
         trigger: sectionRef.current,
         start: "top 75%",
@@ -48,18 +47,14 @@ export default function Stats() {
     <section
       ref={sectionRef}
       style={{
-        position: "relative",
-        zIndex: 1,
+        position: "relative", zIndex: 1,
         padding: "120px max(40px, 6vw)",
-        borderTop: "1px solid rgba(99,155,255,0.1)",
+        borderTop: "1px solid rgba(117,112,188,0.15)",
       }}
     >
-      {/* Label */}
       <p style={{
-        textAlign: "center",
-        fontSize: "11px",
-        letterSpacing: "0.2em",
-        color: "rgba(180,210,255,0.55)",
+        textAlign: "center", fontSize: "11px",
+        letterSpacing: "0.2em", color: "rgba(191,199,222,0.55)",
         marginBottom: "64px",
       }}>
         TRUSTED BY FARMERS WORLDWIDE
@@ -68,29 +63,19 @@ export default function Stats() {
       <div style={{
         display: "grid",
         gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-        gap: "48px",
-        maxWidth: "960px",
-        margin: "0 auto",
-        textAlign: "center",
+        gap: "48px", maxWidth: "960px", margin: "0 auto", textAlign: "center",
       }}>
         {STATS.map((stat, i) => (
           <div key={i}>
             <div style={{
               fontSize: "clamp(2.5rem, 5vw, 4rem)",
-              fontWeight: 600,
-              letterSpacing: "-0.04em",
-              color: "#e8f1ff",
-              lineHeight: 1,
-              marginBottom: "12px",
+              fontWeight: 600, letterSpacing: "-0.04em",
+              color: "#C7DBF7", lineHeight: 1, marginBottom: "12px",
             }}>
               <span ref={(el) => { numRefs.current[i] = el; }}>0</span>
               <span>{stat.suffix}</span>
             </div>
-            <p style={{
-              fontSize: "13px",
-              color: "rgba(180,210,255,0.65)",
-              letterSpacing: "0.02em",
-            }}>
+            <p style={{ fontSize: "13px", color: "rgba(191,199,222,0.7)", letterSpacing: "0.02em" }}>
               {stat.label}
             </p>
           </div>

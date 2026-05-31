@@ -26,7 +26,7 @@ export default function CoasterModel({ mouseX, mouseY, scrollProgress }: Props) 
         vertexShader:   rimGlowVertexShader,
         fragmentShader: rimGlowFragmentShader,
         uniforms: {
-          uColor:     { value: new THREE.Color("#c8b89a") },
+          uColor:     { value: new THREE.Color("#7570BC") },
           uIntensity: { value: 1.8 },
         },
         transparent: true,
@@ -91,7 +91,7 @@ export default function CoasterModel({ mouseX, mouseY, scrollProgress }: Props) 
         {/* Outer ring */}
         <Torus ref={torusRef} args={[1.85, 0.055, 16, 120]}>
           <meshStandardMaterial
-            color="#c8b89a" metalness={0.92} roughness={0.08}
+            color="#7570BC" metalness={0.92} roughness={0.08}
             transparent opacity={1}
           />
         </Torus>
@@ -99,7 +99,7 @@ export default function CoasterModel({ mouseX, mouseY, scrollProgress }: Props) 
         {/* Inner ring */}
         <Torus args={[1.3, 0.035, 16, 100]} rotation={[Math.PI / 3, 0, 0]}>
           <meshStandardMaterial
-            color="#9a8870" metalness={0.96} roughness={0.04}
+            color="#9B96D4" metalness={0.96} roughness={0.04}
             transparent opacity={1}
           />
         </Torus>
@@ -107,8 +107,8 @@ export default function CoasterModel({ mouseX, mouseY, scrollProgress }: Props) 
         {/* Accent ring */}
         <Torus args={[1.58, 0.018, 8, 80]} rotation={[Math.PI / 5, Math.PI / 6, 0]}>
           <meshStandardMaterial
-            color="#ffffff" metalness={1} roughness={0}
-            transparent opacity={0.3}
+            color="#C7DBF7" metalness={1} roughness={0}
+            transparent opacity={0.5}
           />
         </Torus>
 
@@ -116,7 +116,7 @@ export default function CoasterModel({ mouseX, mouseY, scrollProgress }: Props) 
         <mesh ref={innerRef}>
           <sphereGeometry args={[0.68, 64, 64]} />
           <MeshDistortMaterial
-            color="#ede0cc" metalness={0.75} roughness={0.18}
+            color="#BFC7DE" metalness={0.75} roughness={0.18}
             distort={0.22} speed={1.8} envMapIntensity={2}
             transparent opacity={1}
           />

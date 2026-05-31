@@ -48,9 +48,9 @@ export const particleFragmentShader = `
 
     float edge  = 1.0 - smoothstep(0.15, 0.5, dist);
 
-    // Warm ivory → muted bronze gradient by distance
-    vec3 cClose = vec3(0.96, 0.91, 0.80);
-    vec3 cFar   = vec3(0.52, 0.42, 0.30);
+    // #C7DBF7 → #7570BC gradient by distance
+    vec3 cClose = vec3(0.78, 0.86, 0.97);
+    vec3 cFar   = vec3(0.46, 0.44, 0.74);
     vec3 color  = mix(cClose, cFar, vDistance);
 
     float alpha = edge * vAlpha * 0.75;

@@ -6,34 +6,32 @@ import { Environment as DreiEnvironment } from "@react-three/drei";
 export default function Environment() {
   return (
     <>
-      {/* Ambient base light */}
-      <ambientLight intensity={0.3} />
+      <ambientLight intensity={0.4} />
 
-      {/* Key light — warm from top right */}
+      {/* Key light — cool lavender from top right */}
       <directionalLight
         position={[5, 8, 3]}
-        intensity={2.5}
-        color="#fff5e0"
+        intensity={2.2}
+        color="#C7DBF7"
         castShadow
         shadow-mapSize={[2048, 2048]}
       />
 
-      {/* Fill light — cool from left */}
+      {/* Fill light — purple from left */}
       <directionalLight
         position={[-4, 2, -2]}
-        intensity={0.8}
-        color="#a0c4ff"
+        intensity={1.0}
+        color="#7570BC"
       />
 
-      {/* Rim light — from behind */}
+      {/* Rim light — rose from behind */}
       <directionalLight
         position={[0, -3, -5]}
-        intensity={1.2}
-        color="#ffffff"
+        intensity={1.0}
+        color="#C59594"
       />
 
-      {/* HDRI environment for reflections */}
-      <DreiEnvironment preset="city" environmentIntensity={0.6} />
+      <DreiEnvironment preset="city" environmentIntensity={0.5} />
     </>
   );
 }
