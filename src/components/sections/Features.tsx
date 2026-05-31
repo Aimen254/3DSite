@@ -40,50 +40,58 @@ const FEATURES = [
 ];
 
 export default function Features() {
-  const sectionRef  = useRef<HTMLElement>(null);
-  const stickyRef   = useRef<HTMLDivElement>(null);
-  const itemsRef    = useRef<(HTMLDivElement | null)[]>([]);
-  const progressRef = useRef<HTMLDivElement>(null);
-  const lineRef     = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const stickyRef  = useRef<HTMLDivElement>(null);
+  const itemsRef   = useRef<(HTMLDivElement | null)[]>([]);
+  const lineRef    = useRef<HTMLDivElement>(null);
+  const dotRefs    = useRef<(HTMLDivElement | null)[]>([]);
+  const hintRef    = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const activateDot = (i: number) => {
+      dotRefs.current.forEach((d, j) => {
+        if (!d) return;
+        d.style.background = j === i ? "#ffffff" : "rgba(255,255,255,0.2)";
+        d.style.transform  = j === i ? "scale(1.5)" : "scale(1)";
+      });
+    };
+    const deactivateDot = (i: number) => {
+      if (dotRefs.current[i])
+        dotRefs.current[i]!.style.background = "rgba(255,255,255,0.2)";
+    };
+
     const section = sectionRef.current;
     const sticky  = stickyRef.current;
     if (!section || !sticky) return;
 
-    // Pin the sticky container for the full scroll height
+    // Pin the sticky view
     const pin = ScrollTrigger.create({
-      trigger: section,
-      start: "top top",
-      end: "bottom bottom",
-      pin: sticky,
+      trigger:    section,
+      start:      "top top",
+      end:        "bottom bottom",
+      pin:        sticky,
       pinSpacing: false,
     });
 
-    // Animate each feature in/out as we scroll through
+    // Fade each feature in/out
     itemsRef.current.forEach((item, i) => {
       if (!item) return;
       const total = FEATURES.length;
-
-      // Each feature occupies 1/total of the scroll range
       const start = i / total;
       const end   = (i + 1) / total;
 
-      // Fade IN
+      // Fade in
       ScrollTrigger.create({
         trigger: section,
         start: `${start * 100}% top`,
         end:   `${(start + 0.08) * 100}% top`,
         scrub: 1,
         onUpdate: (self) => {
-          gsap.set(item, {
-            opacity: self.progress,
-            y: (1 - self.progress) * 50,
-          });
+          gsap.set(item, { opacity: self.progress, y: (1 - self.progress) * 50 });
         },
       });
 
-      // Fade OUT
+      // Fade out (not last)
       if (i < total - 1) {
         ScrollTrigger.create({
           trigger: section,
@@ -91,28 +99,42 @@ export default function Features() {
           end:   `${end * 100}% top`,
           scrub: 1,
           onUpdate: (self) => {
-            gsap.set(item, {
-              opacity: 1 - self.progress,
-              y: -self.progress * 40,
-            });
+            gsap.set(item, { opacity: 1 - self.progress, y: -self.progress * 40 });
           },
         });
       }
+
+      // Activate dot
+      ScrollTrigger.create({
+        trigger: section,
+        start: `${start * 100}% top`,
+        end:   `${end * 100}% top`,
+        onEnter:     () => activateDot(i),
+        onEnterBack: () => activateDot(i),
+        onLeave:     () => deactivateDot(i),
+        onLeaveBack: () => deactivateDot(i),
+      });
     });
 
-    // Animate progress line
+    // Progress line
     ScrollTrigger.create({
       trigger: section,
       start: "top top",
-      end: "bottom bottom",
+      end:   "bottom bottom",
       scrub: true,
       onUpdate: (self) => {
-        if (lineRef.current) {
-          gsap.set(lineRef.current, {
-            scaleY: self.progress,
-          });
-        }
+        if (lineRef.current)
+          gsap.set(lineRef.current, { scaleY: self.progress });
       },
+    });
+
+    // Hint ring pulse
+    gsap.to(hintRef.current, {
+      scale: 1.06,
+      duration: 2.2,
+      ease: "sine.inOut",
+      yoyo: true,
+      repeat: -1,
     });
 
     return () => {
@@ -130,182 +152,205 @@ export default function Features() {
         zIndex: 1,
       }}
     >
-      {/* Sticky viewport */}
       <div
         ref={stickyRef}
         style={{
           height: "100vh",
-          display: "flex",
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
           alignItems: "center",
-          justifyContent: "center",
           padding: "0 max(40px, 6vw)",
+          gap: "24px",
         }}
       >
-        {/* Left: section label + progress */}
-        <div
-          style={{
-            position: "absolute",
-            left: "max(40px, 6vw)",
-            top: "50%",
-            transform: "translateY(-50%)",
+        {/* ── LEFT: progress + feature text ── */}
+        <div style={{ position: "relative" }}>
+          {/* Section label + vertical progress */}
+          <div style={{
             display: "flex",
-            flexDirection: "column",
             alignItems: "center",
-            gap: "8px",
-          }}
-        >
-          <span
-            style={{
+            gap: "16px",
+            marginBottom: "48px",
+          }}>
+            <span style={{
               fontSize: "10px",
               letterSpacing: "0.2em",
               color: "rgba(255,255,255,0.25)",
-              writingMode: "vertical-rl",
-              transform: "rotate(180deg)",
-              marginBottom: "12px",
-            }}
-          >
-            FEATURES
-          </span>
+            }}>
+              FEATURES
+            </span>
 
-          {/* Progress track */}
-          <div
-            ref={progressRef}
-            style={{
-              width: "1px",
-              height: "120px",
+            {/* Progress track */}
+            <div style={{
+              width: "80px", height: "1px",
               background: "rgba(255,255,255,0.08)",
               position: "relative",
               overflow: "hidden",
-            }}
-          >
-            <div
-              ref={lineRef}
-              style={{
-                position: "absolute",
-                top: 0, left: 0,
-                width: "100%",
-                height: "100%",
-                background: "rgba(255,255,255,0.6)",
-                transformOrigin: "top center",
-                transform: "scaleY(0)",
-              }}
-            />
-          </div>
-
-          {/* Step dots */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "12px" }}>
-            {FEATURES.map((_, i) => (
+            }}>
               <div
-                key={i}
+                ref={lineRef}
                 style={{
-                  width: 4, height: 4,
-                  borderRadius: "50%",
-                  background: "rgba(255,255,255,0.2)",
+                  position: "absolute",
+                  top: 0, left: 0,
+                  width: "100%", height: "100%",
+                  background: "rgba(255,255,255,0.6)",
+                  transformOrigin: "left center",
+                  transform: "scaleX(0)",
                 }}
               />
-            ))}
-          </div>
-        </div>
+            </div>
 
-        {/* Center: feature content stack */}
-        <div
-          style={{
-            position: "relative",
-            width: "100%",
-            maxWidth: "600px",
-            textAlign: "center",
-          }}
-        >
-          {FEATURES.map((feature, i) => (
-            <div
-              key={feature.number}
-              ref={(el) => { itemsRef.current[i] = el; }}
-              style={{
-                position: i === 0 ? "relative" : "absolute",
-                top: 0, left: 0, right: 0,
-                opacity: i === 0 ? 1 : 0,
-                transform: i === 0 ? "none" : "translateY(50px)",
-              }}
-            >
-              {/* Feature number */}
-              <div
-                style={{
-                  fontSize: "11px",
-                  letterSpacing: "0.2em",
-                  color: "rgba(255,255,255,0.25)",
-                  marginBottom: "24px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "12px",
-                }}
-              >
-                <span
+            {/* Step dots */}
+            <div style={{ display: "flex", gap: "6px" }}>
+              {FEATURES.map((_, i) => (
+                <div
+                  key={i}
+                  ref={(el) => { dotRefs.current[i] = el; }}
                   style={{
-                    display: "inline-block",
-                    width: 24, height: "1px",
-                    background: feature.accent,
+                    width: 5, height: 5,
+                    borderRadius: "50%",
+                    background: "rgba(255,255,255,0.2)",
+                    transition: "all 0.3s ease",
                   }}
                 />
-                {feature.number}
-                <span
-                  style={{
-                    padding: "3px 10px",
+              ))}
+            </div>
+          </div>
+
+          {/* Feature cards stack */}
+          <div style={{ position: "relative", minHeight: "280px" }}>
+            {FEATURES.map((feature, i) => (
+              <div
+                key={feature.number}
+                ref={(el) => { itemsRef.current[i] = el; }}
+                style={{
+                  position: i === 0 ? "relative" : "absolute",
+                  top: 0, left: 0, right: 0,
+                  opacity: i === 0 ? 1 : 0,
+                  transform: i === 0 ? "none" : "translateY(50px)",
+                }}
+              >
+                {/* Number + tag */}
+                <div style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "12px",
+                  marginBottom: "24px",
+                }}>
+                  <span style={{
+                    display: "inline-block",
+                    width: 28, height: "1px",
+                    background: feature.accent,
+                  }} />
+                  <span style={{
+                    fontSize: "11px",
+                    letterSpacing: "0.15em",
+                    color: "rgba(255,255,255,0.25)",
+                  }}>
+                    {feature.number}
+                  </span>
+                  <span style={{
+                    padding: "3px 12px",
                     borderRadius: "100px",
-                    border: `1px solid ${feature.accent}40`,
+                    border: `1px solid ${feature.accent}50`,
                     color: feature.accent,
                     fontSize: "10px",
-                  }}
-                >
-                  {feature.tag}
-                </span>
-              </div>
+                    letterSpacing: "0.08em",
+                  }}>
+                    {feature.tag.toUpperCase()}
+                  </span>
+                </div>
 
-              {/* Feature title */}
-              <h2
-                style={{
-                  fontSize: "clamp(2.5rem, 6vw, 5.5rem)",
+                {/* Title */}
+                <h2 style={{
+                  fontSize: "clamp(2.2rem, 5vw, 4.5rem)",
                   fontWeight: 600,
                   letterSpacing: "-0.04em",
                   lineHeight: 1.05,
                   color: "#ffffff",
-                  marginBottom: "24px",
-                }}
-              >
-                {feature.title}
-              </h2>
+                  marginBottom: "20px",
+                }}>
+                  {feature.title}
+                </h2>
 
-              {/* Feature description */}
-              <p
-                style={{
-                  fontSize: "clamp(0.95rem, 1.5vw, 1.1rem)",
+                {/* Description */}
+                <p style={{
+                  fontSize: "clamp(0.9rem, 1.4vw, 1.05rem)",
                   color: "rgba(255,255,255,0.4)",
                   lineHeight: 1.8,
-                  maxWidth: "440px",
-                  margin: "0 auto",
-                }}
-              >
-                {feature.description}
-              </p>
-            </div>
-          ))}
+                  maxWidth: "380px",
+                }}>
+                  {feature.description}
+                </p>
+
+                {/* Learn more */}
+                <div style={{
+                  marginTop: "32px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  fontSize: "13px",
+                  color: feature.accent,
+                  cursor: "pointer",
+                }}>
+                  <span>Learn more</span>
+                  <span style={{ fontSize: "16px" }}>→</span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Right: feature number large bg */}
-        <div
-          style={{
-            position: "absolute",
-            right: "max(40px, 6vw)",
-            fontSize: "clamp(6rem, 14vw, 16rem)",
-            fontWeight: 700,
-            color: "rgba(255,255,255,0.02)",
-            letterSpacing: "-0.06em",
-            lineHeight: 1,
-            pointerEvents: "none",
-            userSelect: "none",
-          }}
-        >
-          {FEATURES[0].number}
+        {/* ── RIGHT: bottle container hint ── */}
+        <div style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "100%",
+          position: "relative",
+        }}>
+          {/* Subtle glow container where bottle appears */}
+          <div
+            ref={hintRef}
+            style={{
+              width: "260px",
+              height: "440px",
+              borderRadius: "130px",
+              border: "1px solid rgba(255,255,255,0.04)",
+              background:
+                "radial-gradient(ellipse 60% 80% at 50% 60%, rgba(200,232,192,0.04) 0%, transparent 70%)",
+              position: "relative",
+            }}
+          >
+            {/* Faint vertical line */}
+            <div style={{
+              position: "absolute",
+              top: "10%",
+              left: "50%",
+              width: "1px",
+              height: "80%",
+              background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.04), transparent)",
+              transform: "translateX(-50%)",
+            }} />
+          </div>
+
+          {/* Corner labels */}
+          {["Organic", "Premium", "Traceable"].map((label, i) => (
+            <div
+              key={label}
+              style={{
+                position: "absolute",
+                fontSize: "10px",
+                letterSpacing: "0.12em",
+                color: "rgba(255,255,255,0.15)",
+                ...(i === 0 && { top: "25%",  left: "5%"  }),
+                ...(i === 1 && { top: "50%",  left: "2%"  }),
+                ...(i === 2 && { top: "72%",  left: "5%"  }),
+              }}
+            >
+              {label.toUpperCase()}
+            </div>
+          ))}
         </div>
       </div>
     </section>
